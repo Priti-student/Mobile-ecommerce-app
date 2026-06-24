@@ -1,0 +1,335 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-50: #e8f0fe;
+  --color-brand-100: #d2e3fc;
+  --color-brand-200: #a6c8fa;
+  --color-brand-300: #7aacf7;
+  --color-brand-500: #1a73e8;
+  --color-brand-600: #1557b0;
+  --color-brand-700: #0d47a1;
+  --color-accent-50: #fff3e0;
+  --color-accent-100: #ffe0b2;
+  --color-accent-200: #ffcc80;
+  --color-accent-500: #ff9800;
+  --color-accent-600: #f57c00;
+  --color-accent-700: #e65100;
+  --color-surface: #ffffff;
+  --color-surface-hover: #f8f9fa;
+  --color-border: #e2e8f0;
+  --color-border-light: #f1f3f4;
+  --color-text-primary: #1f2937;
+  --color-text-secondary: #64748b;
+  --color-text-tertiary: #94a3b8;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #cbd5e1;
+  border-radius: 3px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  @apply min-h-dvh bg-[#f1f3f6] text-slate-900 antialiased;
+  background:
+    linear-gradient(180deg, #ffffff 0%, #f8f9fa 15%, #f1f3f6 100%);
+}
+
+/* Amazon/Flipkart inspired card shadow */
+.card-shadow {
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.card-shadow:hover {
+  box-shadow: 0 8px 24px 0 rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+}
+
+/* Premium button styles */
+.btn-primary {
+  @apply inline-flex items-center justify-center rounded-lg px-6 py-3 text-sm font-semibold text-white shadow-sm transition-all duration-200;
+  background: linear-gradient(135deg, #1a73e8 0%, #1557b0 100%);
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #1557b0 0%, #0d47a1 100%);
+  box-shadow: 0 4px 12px rgba(26, 115, 232, 0.35);
+  transform: translateY(-1px);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(26, 115, 232, 0.25);
+}
+
+.btn-accent {
+  @apply inline-flex items-center justify-center rounded-lg px-6 py-3 text-sm font-semibold text-white shadow-sm transition-all duration-200;
+  background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);
+}
+
+.btn-accent:hover {
+  background: linear-gradient(135deg, #f57c00 0%, #e65100 100%);
+  box-shadow: 0 4px 12px rgba(255, 152, 0, 0.35);
+  transform: translateY(-1px);
+}
+
+.btn-outline {
+  @apply inline-flex items-center justify-center rounded-lg px-6 py-3 text-sm font-semibold transition-all duration-200;
+  border: 1.5px solid #e2e8f0;
+  color: #1f2937;
+  background: white;
+}
+
+.btn-outline:hover {
+  border-color: #1a73e8;
+  color: #1a73e8;
+  background: #f8f9fa;
+}
+
+/* Price tag styling */
+.price-tag {
+  @apply font-bold;
+  color: #388e3c;
+}
+
+/* Rating stars */
+.rating-stars {
+  @apply inline-flex items-center gap-0.5;
+  color: #ff9800;
+}
+
+/* Premium input style */
+.input-premium {
+  @apply w-full rounded-xl border border-border bg-white px-4 py-3.5 text-sm text-text-primary outline-none transition-all duration-200;
+}
+
+.input-premium:focus {
+  border-color: #1a73e8;
+  box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.12);
+}
+
+/* Search bar style (Flipkart-style) */
+.search-bar {
+  @apply relative flex w-full items-center;
+}
+
+.search-bar input {
+  @apply w-full rounded-xl bg-[#f0f5ff] px-5 py-3.5 pl-12 pr-4 text-sm text-text-primary outline-none transition-all duration-200;
+  border: 1.5px solid transparent;
+}
+
+.search-bar input:focus {
+  border-color: #1a73e8;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.08);
+}
+
+.search-bar .search-icon {
+  @apply absolute left-4 top-1/2 -translate-y-1/2;
+  color: #64748b;
+}
+
+/* Product card grid */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+@media (min-width: 640px) {
+  .product-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .product-grid {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+  }
+}
+
+/* Bottom navigation (Flipkart-inspired) */
+.bottom-nav {
+  @apply fixed bottom-0 left-0 right-0 z-50 border-t border-border bg-white/98 shadow-[0_-2px_12px_rgba(0,0,0,0.06)] backdrop-blur-xl;
+}
+
+.bottom-nav-inner {
+  @apply mx-auto flex max-w-2xl items-center justify-around px-2;
+}
+
+.bottom-nav-item {
+  @apply relative flex flex-col items-center gap-0.5 px-3 py-2 text-[10px] font-medium transition-colors duration-200;
+  color: #64748b;
+}
+
+.bottom-nav-item.active {
+  color: #1a73e8;
+}
+
+.bottom-nav-item .nav-icon {
+  @apply text-xl;
+}
+
+/* Badge styles */
+.badge {
+  @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-[11px] font-semibold;
+}
+
+.badge-primary {
+  @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-[11px] font-semibold;
+  background: #e8f0fe;
+  color: #1a73e8;
+}
+
+.badge-success {
+  @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-[11px] font-semibold;
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.badge-warning {
+  @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-[11px] font-semibold;
+  background: #fff3e0;
+  color: #e65100;
+}
+
+.badge-danger {
+  @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-[11px] font-semibold;
+  background: #fbe9e7;
+  color: #c62828;
+}
+
+/* Image shimmer loading */
+.image-shimmer {
+  background: linear-gradient(90deg, #f1f3f6 25%, #e8e8e8 50%, #f1f3f6 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Container max widths */
+.page-container {
+  @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+}
+
+/* Glass effect */
+.glass {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Divider */
+.divider {
+  @apply w-full border-t border-border;
+}
+
+/* Scrollable category tabs */
+.category-tabs {
+  @apply flex snap-x gap-3 overflow-x-auto pb-2;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.category-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.category-tab {
+  @apply shrink-0 snap-start rounded-full border px-5 py-2.5 text-sm font-medium transition-all duration-200;
+}
+
+.category-tab.active {
+  @apply border-brand-500 bg-brand-500 text-white;
+  box-shadow: 0 2px 8px rgba(26, 115, 232, 0.25);
+}
+
+.category-tab:not(.active) {
+  @apply border-border bg-white text-slate-700;
+}
+
+.category-tab:not(.active):hover {
+  @apply border-brand-200 text-brand-600;
+  background: #f8f9fa;
+}
+
+/* Section title */
+.section-title {
+  @apply text-lg font-bold text-text-primary;
+}
+
+.section-subtitle {
+  @apply text-xs font-semibold uppercase tracking-wider text-brand-500;
+}
+
+/* Deal of the day section */
+.deal-section {
+  @apply rounded-2xl bg-gradient-to-br from-brand-500 to-brand-700 p-6 text-white;
+}
+
+/* Cart item animation */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.cart-item-enter {
+  animation: slideIn 0.3s ease-out;
+}
+
+/* Modal backdrop */
+.modal-backdrop {
+  @apply fixed inset-0 z-40;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+/* Image zoom on hover */
+.img-zoom-container {
+  @apply relative overflow-hidden;
+}
+
+.img-zoom-container img {
+  transition: transform 0.4s ease;
+}
+
+.img-zoom-container:hover img {
+  transform: scale(1.06);
+}
