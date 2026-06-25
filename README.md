@@ -1,6 +1,6 @@
-# ShopEase — Mobile Vendor Store
+# ShopEase — E-commerce Application 
 
-A single-vendor mobile e-commerce app (Amazon/Flipkart-style) built with React, Vite, Tailwind CSS, and Express.
+A single-vendor e-commerce app (Amazon/Flipkart-style) built with React, Vite, Tailwind CSS, and Express.
 
 ## Contributors
 
