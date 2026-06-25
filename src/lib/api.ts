@@ -1,5 +1,6 @@
 import type { AuthResponse, LoginPayload, RegisterPayload } from '@/types/auth'
 import type { SecurityQuestion } from '@/types/auth'
+import type { CartItem } from '@/context/CartContext'
 import type { CreateProductPayload, Product } from '@/types/product'
 import { notifySessionExpired } from '@/lib/session'
 
@@ -140,4 +141,48 @@ export function formatPrice(value: number) {
     currency: 'INR',
     maximumFractionDigits: 0,
   }).format(value)
+}
+
+// ─── Cart API ────────────────────────────────────────────────────────
+
+export function getCart(token: string) {
+  return request<{ items: CartItem[] }>('/cart', { token })
+}
+
+export function syncCart(items: { productId: string; quantity: number }[], token: string) {
+  return request<{ items: CartItem[] }>('/cart/sync', {
+    method: 'POST',
+    token,
+    json: { items },
+  })
+}
+
+export function addToCart(productId: string, token: string, quantity = 1) {
+  return request<{ items: CartItem[] }>('/cart/add', {
+    method: 'POST',
+    token,
+    json: { productId, quantity },
+  })
+}
+
+export function updateCartItem(productId: string, quantity: number, token: string) {
+  return request<{ items: CartItem[] }>(`/cart/item/${productId}`, {
+    method: 'PATCH',
+    token,
+    json: { quantity },
+  })
+}
+
+export function removeCartItem(productId: string, token: string) {
+  return request<{ items: CartItem[] }>(`/cart/item/${productId}`, {
+    method: 'DELETE',
+    token,
+  })
+}
+
+export function clearCart(token: string) {
+  return request<{ items: CartItem[] }>('/cart', {
+    method: 'DELETE',
+    token,
+  })
 }

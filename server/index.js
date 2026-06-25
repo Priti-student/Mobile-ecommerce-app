@@ -6,6 +6,7 @@ import { connectDb } from './config/db.js'
 import { ensureVendorAccount } from './lib/users.js'
 import authRoutes from './routes/auth.js'
 import productRoutes from './routes/products.js'
+import cartRoutes from './routes/cart.js'
 
 const PORT = process.env.PORT ?? 3001
 
@@ -32,6 +33,7 @@ async function start() {
 
   app.use('/api/auth', authRoutes)
   app.use('/api/products', productRoutes)
+  app.use('/api/cart', cartRoutes)
 
   app.use((error, _req, res, next) => {
     if (error instanceof multer.MulterError) {

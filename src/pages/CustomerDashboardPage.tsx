@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { ProductCatalog } from '@/components/products/ProductCatalog'
+import { BillModal } from '@/components/billing/BillModal'
 import { useAuth } from '@/context/AuthContext'
 import { useCart } from '@/context/CartContext'
 import { formatPrice, getProducts } from '@/lib/api'
@@ -14,6 +15,7 @@ export function CustomerDashboardPage() {
   const [products, setProducts] = useState<Product[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
+  const [showBill, setShowBill] = useState(false)
 
   useEffect(() => {
     getProducts()
@@ -190,13 +192,11 @@ export function CustomerDashboardPage() {
                     </div>
                     <button
                       type="button"
+                      onClick={() => setShowBill(true)}
                       className="btn-accent mt-5 w-full"
                     >
                       Proceed to Checkout
                     </button>
-                    <p className="mt-2 text-center text-xs text-text-tertiary">
-                      Checkout feature coming soon
-                    </p>
                   </div>
                 </div>
               </div>
@@ -249,6 +249,16 @@ export function CustomerDashboardPage() {
           ) : null}
         </div>
       </main>
+
+      {/* Bill Modal */}
+      {showBill ? (
+        <BillModal
+          items={items}
+          userName={user?.name || 'Customer'}
+          shopName="ShopEase"
+          onClose={() => setShowBill(false)}
+        />
+      ) : null}
 
       {/* Premium Bottom Navigation - Flipkart Inspired */}
       <nav className="bottom-nav">
